@@ -1,0 +1,59 @@
+===============================================================================
+=  lisezmoi.txt                           Log tool wrapper files description  =
+=  Auteur               Julien Darthenay julien<dot>darthenay<at>free<dot>fr  =
+=  Developing tools      Oracle Java SDK 8, Notepad++, MS Windows Seven Home  =
+=  Copyright 2016 Julien Darthenay                                            =
+===============================================================================
+
+===============================================================================
+=  This file is part of LogWrapper                                            =
+=                                                                             =
+=  LogWrapper is free software: you can redistribute it and/or modify it      =
+=  under the terms of the GNU Lesser General Public License as published by   =
+=  the Free Software Foundation, either version 3 of the License, or (at      =
+=  your option) any later version.                                            =
+=                                                                             =
+=  LogWrapper is distributed in the hope that it will be useful, but WITHOUT  =
+=  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or      =
+=  FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public        =
+=  License for more details.                                                  =
+=                                                                             =
+=  You should have received a copy of the GNU Lesser General Public License   =
+=  along with LogWrapper. If not, see <http://www.gnu.org/licenses/>.         =
+===============================================================================
+
+L'archive contenant ce fichier peut être téléchargée sur
+<http://julien.darthenay.free.fr>.
+
+LogWrapper - version 1.0
+LogWrapper utilise la réflection pour déterminer si les logs doivent être
+envoyées à Log4j 2 ou dans la console.
+
+LogWrapper-src.7z - archive contenant toutes les sources pour compiler la
+bibliothèque. Contient :
+  LogWrapper.java
+  LogConsoleWrapper.java
+  Log4j2Wrapper.java
+  COPYING.txt
+  COPYING-LESSER.txt
+  lisezmoi.txt
+  readme.txt
+
+LogWrapper.java - classe générique mère de tous les wrappers.
+
+Log4j2Wrapper.java - wrapper pour l'utilisation de Apache Log4j 2.
+
+LogConsoleWrapper.java - wrapper pour l'affichage des logs dans la console.
+
+COPYING.txt - la licence GPL version 3.
+
+COPYING-LESSER.txt - la licence Lesser GPL version 3. Elle s'applique à
+l'ensemble de ces fichiers.
+
+lisezmoi.txt - description de LogWrapper en français.
+
+readme.txt - description de LogWrapper en anglais.
+
+Historique des versions
+7 février 2016 - version 1.0
+  Création.
