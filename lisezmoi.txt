@@ -1,6 +1,6 @@
 ===============================================================================
-=  lisezmoi.txt                           Log tool wrapper files description  =
-=  Auteur               Julien Darthenay julien<dot>darthenay<at>free<dot>fr  =
+=  lisezmoi.txt     Log tool wrapper files description and short user manual  =
+=  Author               Julien Darthenay julien<dot>darthenay<at>free<dot>fr  =
 =  Developing tools      Oracle Java SDK 8, Notepad++, MS Windows Seven Home  =
 =  Copyright 2016 Julien Darthenay                                            =
 ===============================================================================
@@ -23,27 +23,45 @@
 ===============================================================================
 
 L'archive contenant ce fichier peut être téléchargée sur
-<http://julien.darthenay.free.fr>.
+<http://julien.darthenay.free.fr> ou
+<https://github.com/JDarthenay/log-wrapper>.
 
-LogWrapper - version 1.0
+LogWrapper - version 1.1
 LogWrapper utilise la réflection pour déterminer si les logs doivent être
-envoyées à Log4j 2 ou dans la console.
+envoyés à Log4j 2 ou dans la console.
+
+Certaines propriétés peuvent influer sur le comportement de LogWrapper.
+LogWrapper.silentlySearchLoggingTools réglé sur true permet de ne pas afficher
+les messages d'erreurs dûs à l'absence d'un outil de logging.
+LogWrapper.ignoreLog4j2 réglé sur true permet de ne jamais utiliser le wrapper
+de Log4j 2.
+LogWrapper.consoleLogger.level peut être réglé sur "off", "fatal", "error",
+"warn", "info", "trace", "debug" ou "all" pour modifier le niveau de trace du
+logger console qui est par défaut "all".
+Si vous utilisez un compilateur java de version 1.7 ou inférieure, vous devez
+écrire une interface "Supplier" pour remplacer "java.util.function.Supplier".
 
 LogWrapper-src.7z - archive contenant toutes les sources pour compiler la
 bibliothèque. Contient :
-  LogWrapper.java
+  Logger.java
+  LogManager.java
   LogConsoleWrapper.java
   Log4j2Wrapper.java
+  Level.java
   COPYING.txt
   COPYING-LESSER.txt
   lisezmoi.txt
   readme.txt
 
-LogWrapper.java - classe générique mère de tous les wrappers.
+Logger.java - classe générique mère de tous les wrappers.
+
+LogManager.java - détermine le log wrapper à utiliser et produit les loggers.
 
 Log4j2Wrapper.java - wrapper pour l'utilisation de Apache Log4j 2.
 
 LogConsoleWrapper.java - wrapper pour l'affichage des logs dans la console.
+
+Level.java - niveaux des logs.
 
 COPYING.txt - la licence GPL version 3.
 
@@ -57,3 +75,14 @@ readme.txt - description de LogWrapper en anglais.
 Historique des versions
 7 février 2016 - version 1.0
   Création.
+13 février 2016 - version 1.1
+  Changement du nom de la classe du logger en "Logger".
+  Création de la classe "LogManager".
+  Repositionnement de la méthode "getLogger()" dans la classe "LogManager".
+  Création de la classe "Level".
+  Nouvelle propriété "LogWrapper.silentlySearchLoggingTool".
+  Nouvelle propriété "LogWrapper.ignoreLog4j2".
+  Nouvelle propriété "LogWrapper.consoleLogger.level".
+  Ajout de méthodes sur les niveaux des logs.
+  Ajout de méthodes de logging supplémentaires.
+  Ajout d'une synchronisation sur la méthode "getLogger()".

@@ -1,6 +1,6 @@
 /*****************************************************************************
- * LogWrapper.java                           console output log tool wrapper *
- * Auteur               Julien Darthenay julien<dot>darthenay<at>free<dot>fr *
+ * LogConsoleWrapper.java                    console output log tool wrapper *
+ * Author               Julien Darthenay julien<dot>darthenay<at>free<dot>fr *
  * Developing tools      Oracle Java SDK 8, Notepad++, MS Windows Seven Home *
  * Copyright 2016 Julien Darthenay                                           *
  *****************************************************************************/
@@ -24,7 +24,16 @@
 
 package fr.juliendarthenay.tools.logging.wrapper;
 
-class LogConsoleWrapper extends LogWrapper {
+/**
+ * Wrapper for console logging.
+ * @author Julien Darthenay
+ * @version 1.1
+ * @since 1.0
+ */
+class LogConsoleWrapper extends Logger {
+  private static final String PROPERTY_CONSOLE_LOGGER_LEVEL = "LogWrapper.consoleLogger.level";
+  private static final String PROPERTY_CONSOLE_LOGGER_LEVEL_DEFAULT = "all";
+
   private static final String FORMAT_FATAL = "FATAL %s - %s";
   private static final String FORMAT_ERROR = "ERROR %s - %s";
   private static final String FORMAT_WARN = "WARN  %s - %s";
@@ -32,45 +41,85 @@ class LogConsoleWrapper extends LogWrapper {
   private static final String FORMAT_DEBUG = "DEBUG %s - %s";
   private static final String FORMAT_TRACE = "TRACE %s - %s";
 
-  private final String className;
+  private static final String CONSOLE_LOGGER_LEVEL = System.getProperty(PROPERTY_CONSOLE_LOGGER_LEVEL, PROPERTY_CONSOLE_LOGGER_LEVEL_DEFAULT);
+  private static final Level LEVEL;
+
+  private final String name;
 
   /**
-   * Constructor should only be used by Log4j2Wrapper.getLogger().
+   * Computes console logger level from system properties.
+   * @since 1.1
    */
-  LogConsoleWrapper(Class<?> clazz) {
+  static {
+    Level level = Level.fromString(CONSOLE_LOGGER_LEVEL);
+    if (level == null) {
+      LEVEL = Level.fromString(PROPERTY_CONSOLE_LOGGER_LEVEL_DEFAULT);
+    } else {
+      LEVEL = level;
+    }
+  }
+
+  /**
+   * Constructor should only be used by LogManager.getLogger().
+   * @param tag logger name
+   * @since 1.0
+   */
+  LogConsoleWrapper(String tag) {
     super();
 
-    className = clazz.getName();
+    name = tag;
   }
 
   @Override
   public void fatal(String message) {
-    System.out.println(String.format(FORMAT_FATAL, className, message));
+    if (isFatalEnabled()) {
+      System.out.println(String.format(FORMAT_FATAL, name, message));
+    }
   }
 
   @Override
   public void error(String message) {
-    System.out.println(String.format(FORMAT_ERROR, className, message));
+    if (isErrorEnabled()) {
+      System.out.println(String.format(FORMAT_ERROR, name, message));
+    }
   }
 
   @Override
   public void warn(String message) {
-    System.out.println(String.format(FORMAT_WARN, className, message));
+    if (isWarnEnabled()) {
+      System.out.println(String.format(FORMAT_WARN, name, message));
+    }
   }
 
   @Override
   public void info(String message) {
-    System.out.println(String.format(FORMAT_INFO, className, message));
+    if (isInfoEnabled()) {
+      System.out.println(String.format(FORMAT_INFO, name, message));
+    }
   }
 
   @Override
   public void debug(String message) {
-    System.out.println(String.format(FORMAT_DEBUG, className, message));
+    if (isDebugEnabled()) {
+      System.out.println(String.format(FORMAT_DEBUG, name, message));
+    }
   }
 
   @Override
   public void trace(String message) {
-    System.out.println(String.format(FORMAT_TRACE, className, message));
+    if (isTraceEnabled()) {
+      System.out.println(String.format(FORMAT_TRACE, name, message));
+    }
+  }
+
+  @Override
+  public String getName() {
+    return name;
+  }
+
+  @Override
+  public Level getLevel() {
+    return LEVEL;
   }
 
 }
