@@ -26,7 +26,7 @@ L'archive contenant ce fichier peut être téléchargée sur
 <http://julien.darthenay.free.fr> ou
 <https://github.com/JDarthenay/log-wrapper>.
 
-LogWrapper - version 1.1
+LogWrapper - version 1.2
 LogWrapper utilise la réflection pour déterminer si les logs doivent être
 envoyés à Log4j 2 ou dans la console.
 
@@ -86,3 +86,5 @@ Historique des versions
   Ajout de méthodes sur les niveaux des logs.
   Ajout de méthodes de logging supplémentaires.
   Ajout d'une synchronisation sur la méthode "getLogger()".
+27 février 2016 - version 1.2
+  Ajout de méthodes de logging pour les object Throwable.

@@ -34,20 +34,26 @@ import java.util.Map;
  * If Log4j2 is available, uses it.
  * If no other log tool is available, uses console logging.
  * @author Julien Darthenay
- * @version 1.1
+ * @version 1.2
  * @since 1.1
  */
 public abstract class LogManager extends Object {
-  private static final String PROPERTY_SILENTLY_SEARCH_LOGGING_TOOLS = "LogWrapper.silentlySearchLoggingTools";
-  private static final String PROPERTY_IGNORE_LOG4J2 = "LogWrapper.ignoreLog4j2";
+  private static final String PROPERTY_SILENTLY_SEARCH_LOGGING_TOOLS
+                                     = "LogWrapper.silentlySearchLoggingTools";
+  private static final String PROPERTY_IGNORE_LOG4J2
+                                                   = "LogWrapper.ignoreLog4j2";
 
-  private static final String LOG4J2_LOG_MANAGER_QUALIFIED_NAME = "org.apache.logging.log4j.LogManager";
+  private static final String LOG4J2_LOG_MANAGER_QUALIFIED_NAME
+                                       = "org.apache.logging.log4j.LogManager";
   private static final String LOG4J2_METHOD_GET_LOGGER = "getLogger";
 
-  private static final boolean SILENTLY_SEARCH_LOGGING_TOOLS = Boolean.getBoolean(PROPERTY_SILENTLY_SEARCH_LOGGING_TOOLS);
-  private static final boolean IGNORE_LOG4J2 = Boolean.getBoolean(PROPERTY_IGNORE_LOG4J2);
+  private static final boolean SILENTLY_SEARCH_LOGGING_TOOLS =
+                    Boolean.getBoolean(PROPERTY_SILENTLY_SEARCH_LOGGING_TOOLS);
+  private static final boolean IGNORE_LOG4J2 =
+                                    Boolean.getBoolean(PROPERTY_IGNORE_LOG4J2);
 
-  private static final Map<String, Logger> MAP_LOGGERS = Collections.synchronizedMap(new HashMap<String, Logger>());
+  private static final Map<String, Logger> MAP_LOGGERS =
+                    Collections.synchronizedMap(new HashMap<String, Logger>());
 
   /**
    * Checks if Log4j 2 was found.
@@ -74,8 +80,10 @@ public abstract class LogManager extends Object {
 
     if (!IGNORE_LOG4J2) {
       try {
-        Class<?> classLogManager = classLoader.loadClass(LOG4J2_LOG_MANAGER_QUALIFIED_NAME);
-        methodGetLogger = classLogManager.getMethod(LOG4J2_METHOD_GET_LOGGER, String.class);
+        Class<?> classLogManager =
+                      classLoader.loadClass(LOG4J2_LOG_MANAGER_QUALIFIED_NAME);
+        methodGetLogger =
+             classLogManager.getMethod(LOG4J2_METHOD_GET_LOGGER, String.class);
 
         log4j2Found = true;
       } catch (ClassNotFoundException e) {

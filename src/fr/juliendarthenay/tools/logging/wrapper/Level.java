@@ -27,7 +27,7 @@ package fr.juliendarthenay.tools.logging.wrapper;
 /**
  * Logging levels.
  * @author Julien Darthenay
- * @version 1.1
+ * @version 1.2
  * @since 1.1
  */
 public enum Level {

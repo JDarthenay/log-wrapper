@@ -33,17 +33,21 @@ import java.util.Map;
 /**
  * Wrapper for Log4j 2.
  * @author Julien Darthenay
- * @version 1.1
+ * @version 1.2
  * @since 1.0
  */
 class Log4j2Wrapper extends Logger {
-  private static final String LOG4J2_LOGGER_QUALIFIED_NAME = "org.apache.logging.log4j.Logger";
-  private static final String LOG4J2_LEVEL_QUALIFIED_NAME = "org.apache.logging.log4j.Level";
+  private static final String LOG4J2_LOGGER_QUALIFIED_NAME =
+                                             "org.apache.logging.log4j.Logger";
+  private static final String LOG4J2_LEVEL_QUALIFIED_NAME =
+                                              "org.apache.logging.log4j.Level";
 
   private static final String METHOD_GET_LEVEL_NAME = "getLevel";
 
-  private static final Map<Level, Object> MAP_LOG4J_2_LEVELS = new EnumMap<Level, Object>(Level.class);
-  private static final Map<Level, Method> MAP_LOG4J_2_METHODS = new EnumMap<Level, Method>(Level.class);
+  private static final Map<Level, Object> MAP_LOG4J_2_LEVELS =
+                                       new EnumMap<Level, Object>(Level.class);
+  private static final Map<Level, Method> MAP_LOG4J_2_METHODS =
+                                       new EnumMap<Level, Method>(Level.class);
   private static final Method METHOD_GET_LEVEL;
 
   /**
@@ -75,7 +79,8 @@ class Log4j2Wrapper extends Logger {
             Method method;
 
             try {
-              method = classLogger.getMethod(level.getLog4j2Name(), String.class);
+              method = classLogger.getMethod(level.getLog4j2Name(),
+                                             String.class);
             } catch (NoSuchMethodException e) {
               e.printStackTrace();
               method = null;
@@ -104,7 +109,8 @@ class Log4j2Wrapper extends Logger {
         for (Level level : Level.values()) {
           Field fieldLog4j2Level;
           try {
-            fieldLog4j2Level = classLevel.getField(level.getLog4j2Name().toUpperCase());
+            fieldLog4j2Level =
+                      classLevel.getField(level.getLog4j2Name().toUpperCase());
           } catch (NoSuchFieldException e) {
             e.printStackTrace();
             fieldLog4j2Level = null;

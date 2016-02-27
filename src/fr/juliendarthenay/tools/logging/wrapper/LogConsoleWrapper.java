@@ -27,11 +27,12 @@ package fr.juliendarthenay.tools.logging.wrapper;
 /**
  * Wrapper for console logging.
  * @author Julien Darthenay
- * @version 1.1
+ * @version 1.2
  * @since 1.0
  */
 class LogConsoleWrapper extends Logger {
-  private static final String PROPERTY_CONSOLE_LOGGER_LEVEL = "LogWrapper.consoleLogger.level";
+  private static final String PROPERTY_CONSOLE_LOGGER_LEVEL =
+                                              "LogWrapper.consoleLogger.level";
   private static final String PROPERTY_CONSOLE_LOGGER_LEVEL_DEFAULT = "all";
 
   private static final String FORMAT_FATAL = "FATAL %s - %s";
@@ -41,7 +42,10 @@ class LogConsoleWrapper extends Logger {
   private static final String FORMAT_DEBUG = "DEBUG %s - %s";
   private static final String FORMAT_TRACE = "TRACE %s - %s";
 
-  private static final String CONSOLE_LOGGER_LEVEL = System.getProperty(PROPERTY_CONSOLE_LOGGER_LEVEL, PROPERTY_CONSOLE_LOGGER_LEVEL_DEFAULT);
+  private static final String CONSOLE_LOGGER_LEVEL = System.getProperty(
+    PROPERTY_CONSOLE_LOGGER_LEVEL,
+    PROPERTY_CONSOLE_LOGGER_LEVEL_DEFAULT
+  );
   private static final Level LEVEL;
 
   private final String name;

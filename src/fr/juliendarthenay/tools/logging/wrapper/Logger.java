@@ -24,12 +24,14 @@
 
 package fr.juliendarthenay.tools.logging.wrapper;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.function.Supplier;
 
 /**
  * Generic class for log wrappers.
  * @author Julien Darthenay
- * @version 1.1
+ * @version 1.2
  * @since 1.0
  */
 public abstract class Logger extends Object {
@@ -88,6 +90,21 @@ public abstract class Logger extends Object {
   }
 
   /**
+   * Prints a stack trace message at given level.
+   * @param level log level to which log
+   * @param t throwable you want to log the stack trace
+   * @since 1.2
+   */
+  public void log(Level level, Throwable t) {
+    if (isEnabled(level)) {
+      StringWriter sw = new StringWriter();
+      PrintWriter pw = new PrintWriter(sw);
+      t.printStackTrace(pw);
+      log(level, sw.toString());
+    }
+  }
+
+  /**
    * Prints a fatal level message.
    * @param message message to log
    * @since 1.0
@@ -102,6 +119,20 @@ public abstract class Logger extends Object {
   public void fatal(Supplier<?> msgSupplier) {
     if (isFatalEnabled()) {
       fatal(msgSupplier.get().toString());
+    }
+  }
+
+  /**
+   * Prints a stack trace message at fatal level.
+   * @param t throwable you want to log the stack trace
+   * @since 1.2
+   */
+  public void fatal(Throwable t) {
+    if (isFatalEnabled()) {
+      StringWriter sw = new StringWriter();
+      PrintWriter pw = new PrintWriter(sw);
+      t.printStackTrace(pw);
+      fatal(sw.toString());
     }
   }
 
@@ -124,6 +155,20 @@ public abstract class Logger extends Object {
   }
 
   /**
+   * Prints a stack trace message at error level.
+   * @param t throwable you want to log the stack trace
+   * @since 1.2
+   */
+  public void error(Throwable t) {
+    if (isErrorEnabled()) {
+      StringWriter sw = new StringWriter();
+      PrintWriter pw = new PrintWriter(sw);
+      t.printStackTrace(pw);
+      error(sw.toString());
+    }
+  }
+
+  /**
    * Prints a warn level message.
    * @param message message to log
    * @since 1.0
@@ -138,6 +183,20 @@ public abstract class Logger extends Object {
   public void warn(Supplier<?> msgSupplier) {
     if (isWarnEnabled()) {
       warn(msgSupplier.get().toString());
+    }
+  }
+
+  /**
+   * Prints a stack trace message at warn level.
+   * @param t throwable you want to log the stack trace
+   * @since 1.2
+   */
+  public void warn(Throwable t) {
+    if (isWarnEnabled()) {
+      StringWriter sw = new StringWriter();
+      PrintWriter pw = new PrintWriter(sw);
+      t.printStackTrace(pw);
+      warn(sw.toString());
     }
   }
 
@@ -160,6 +219,20 @@ public abstract class Logger extends Object {
   }
 
   /**
+   * Prints a stack trace message at info level.
+   * @param t throwable you want to log the stack trace
+   * @since 1.2
+   */
+  public void info(Throwable t) {
+    if (isInfoEnabled()) {
+      StringWriter sw = new StringWriter();
+      PrintWriter pw = new PrintWriter(sw);
+      t.printStackTrace(pw);
+      info(sw.toString());
+    }
+  }
+
+  /**
    * Prints a debug level message.
    * @param message message to log
    * @since 1.0
@@ -178,6 +251,20 @@ public abstract class Logger extends Object {
   }
 
   /**
+   * Prints a stack trace message at debug level.
+   * @param t throwable you want to log the stack trace
+   * @since 1.2
+   */
+  public void debug(Throwable t) {
+    if (isDebugEnabled()) {
+      StringWriter sw = new StringWriter();
+      PrintWriter pw = new PrintWriter(sw);
+      t.printStackTrace(pw);
+      debug(sw.toString());
+    }
+  }
+
+  /**
    * Prints a trace level message.
    * @param message message to log
    * @since 1.0
@@ -192,6 +279,20 @@ public abstract class Logger extends Object {
   public void trace(Supplier<?> msgSupplier) {
     if (isTraceEnabled()) {
       trace(msgSupplier.get().toString());
+    }
+  }
+
+  /**
+   * Prints a stack trace message at trace level.
+   * @param t throwable you want to log the stack trace
+   * @since 1.2
+   */
+  public void trace(Throwable t) {
+    if (isTraceEnabled()) {
+      StringWriter sw = new StringWriter();
+      PrintWriter pw = new PrintWriter(sw);
+      t.printStackTrace(pw);
+      trace(sw.toString());
     }
   }
 
