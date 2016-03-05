@@ -26,7 +26,7 @@ The archive file containing this file is available at
 <http://julien.darthenay.free.fr> or
 <https://github.com/JDarthenay/log-wrapper>.
 
-LogWrapper - version 1.2
+LogWrapper - version 1.3
 Uses reflection to determine if logging must be done with Log4j 2 or just sent
 to console.
 
@@ -87,3 +87,7 @@ February 13, 2016 - version 1.1
   Synchronization added in "getLogger()" method.
 February 27, 2016 - version 1.2
   New logging methods for Throwable objects.
+March 5, 216 - version 1.3
+  Simplification of logging methods to reduce necessary code for each wrapper.
+  Add one argument to logging methods for Throwable objects in order to better
+  match logging tools conventions.

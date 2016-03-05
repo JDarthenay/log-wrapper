@@ -34,7 +34,7 @@ import java.util.Map;
  * If Log4j2 is available, uses it.
  * If no other log tool is available, uses console logging.
  * @author Julien Darthenay
- * @version 1.2
+ * @version 1.3
  * @since 1.1
  */
 public abstract class LogManager extends Object {
@@ -109,8 +109,8 @@ public abstract class LogManager extends Object {
 
   /**
    * Creates a log wrapper for the given class.
-   * @param clazz class whose name will be used as logger name
-   * @return log wrapper
+   * @param clazz Class whose name will be used as logger name
+   * @return Log wrapper
    * @since 1.0
    */
   public static Logger getLogger(Class<?> clazz) {
@@ -119,8 +119,8 @@ public abstract class LogManager extends Object {
 
   /**
    * Creates a log wrapper for the given tag.
-   * @param tag name of the logger
-   * @return log wrapper
+   * @param tag Name of the logger
+   * @return Log wrapper
    * @since 1.1
    */
   public static Logger getLogger(String tag) {

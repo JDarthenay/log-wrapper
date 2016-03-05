@@ -31,7 +31,7 @@ import java.util.function.Supplier;
 /**
  * Generic class for log wrappers.
  * @author Julien Darthenay
- * @version 1.2
+ * @version 1.3
  * @since 1.0
  */
 public abstract class Logger extends Object {
@@ -45,8 +45,8 @@ public abstract class Logger extends Object {
 
   /**
    * Prints a log at given level.
-   * @param level log level to which log
-   * @param message message to log
+   * @param level Mog level to which log
+   * @param message Message to log
    * @since 1.1
    */
   public void log(Level level, String message) {
@@ -79,8 +79,8 @@ public abstract class Logger extends Object {
 
   /**
    * Prints a message at given level, computes it only if necessarry.
-   * @param level log level to which log
-   * @param msgSupplier supplier for computing message
+   * @param level Log level to which log
+   * @param msgSupplier Supplier for computing message
    * @since 1.1
    */
   public void log(Level level, Supplier<?> msgSupplier) {
@@ -91,14 +91,16 @@ public abstract class Logger extends Object {
 
   /**
    * Prints a stack trace message at given level.
-   * @param level log level to which log
-   * @param t throwable you want to log the stack trace
+   * @param level Log level to which log
+   * @param message Message to log
+   * @param t Throwable you want to log the stack trace
    * @since 1.2
    */
-  public void log(Level level, Throwable t) {
+  public void log(Level level, String message, Throwable t) {
     if (isEnabled(level)) {
       StringWriter sw = new StringWriter();
       PrintWriter pw = new PrintWriter(sw);
+      pw.println(message);
       t.printStackTrace(pw);
       log(level, sw.toString());
     }
@@ -106,214 +108,178 @@ public abstract class Logger extends Object {
 
   /**
    * Prints a fatal level message.
-   * @param message message to log
+   * @param message Message to log
    * @since 1.0
    */
   abstract public void fatal(String message);
 
   /**
    * Prints a fatal level message, computes it only if necessarry.
-   * @param msgSupplier supplier for computing message
+   * @param msgSupplier Supplier for computing message
    * @since 1.1
    */
   public void fatal(Supplier<?> msgSupplier) {
-    if (isFatalEnabled()) {
-      fatal(msgSupplier.get().toString());
-    }
+    log(Level.FATAL, msgSupplier);
   }
 
   /**
    * Prints a stack trace message at fatal level.
-   * @param t throwable you want to log the stack trace
+   * @param message Message to log
+   * @param t Throwable you want to log the stack trace
    * @since 1.2
    */
-  public void fatal(Throwable t) {
-    if (isFatalEnabled()) {
-      StringWriter sw = new StringWriter();
-      PrintWriter pw = new PrintWriter(sw);
-      t.printStackTrace(pw);
-      fatal(sw.toString());
-    }
+  public void fatal(String message, Throwable t) {
+    log(Level.FATAL, message, t);
   }
 
   /**
    * Prints an error level message.
-   * @param message message to log
+   * @param message Message to log
    * @since 1.0
    */
   abstract public void error(String message);
 
   /**
    * Prints an error level message, computes it only if necessarry.
-   * @param msgSupplier supplier for computing message
+   * @param msgSupplier Supplier for computing message
    * @since 1.1
    */
   public void error(Supplier<?> msgSupplier) {
-    if (isErrorEnabled()) {
-      error(msgSupplier.get().toString());
-    }
+    log(Level.ERROR, msgSupplier);
   }
 
   /**
    * Prints a stack trace message at error level.
-   * @param t throwable you want to log the stack trace
+   * @param message Message to log
+   * @param t Throwable you want to log the stack trace
    * @since 1.2
    */
-  public void error(Throwable t) {
-    if (isErrorEnabled()) {
-      StringWriter sw = new StringWriter();
-      PrintWriter pw = new PrintWriter(sw);
-      t.printStackTrace(pw);
-      error(sw.toString());
-    }
+  public void error(String message, Throwable t) {
+    log(Level.ERROR, message, t);
   }
 
   /**
    * Prints a warn level message.
-   * @param message message to log
+   * @param message Message to log
    * @since 1.0
    */
   abstract public void warn(String message);
 
   /**
    * Prints a warn level message, computes it only if necessarry.
-   * @param msgSupplier supplier for computing message
+   * @param msgSupplier Supplier for computing message
    * @since 1.1
    */
   public void warn(Supplier<?> msgSupplier) {
-    if (isWarnEnabled()) {
-      warn(msgSupplier.get().toString());
-    }
+    log(Level.WARN, msgSupplier);
   }
 
   /**
    * Prints a stack trace message at warn level.
-   * @param t throwable you want to log the stack trace
+   * @param message Message to log
+   * @param t Throwable you want to log the stack trace
    * @since 1.2
    */
-  public void warn(Throwable t) {
-    if (isWarnEnabled()) {
-      StringWriter sw = new StringWriter();
-      PrintWriter pw = new PrintWriter(sw);
-      t.printStackTrace(pw);
-      warn(sw.toString());
-    }
+  public void warn(String message, Throwable t) {
+    log(Level.WARN, message, t);
   }
 
   /**
    * Prints an info level message.
-   * @param message message to log
+   * @param message Message to log
    * @since 1.0
    */
   abstract public void info(String message);
 
   /**
    * Prints an info level message, computes it only if necessarry.
-   * @param msgSupplier supplier for computing message
+   * @param msgSupplier Supplier for computing message
    * @since 1.1
    */
   public void info(Supplier<?> msgSupplier) {
-    if (isInfoEnabled()) {
-      info(msgSupplier.get().toString());
-    }
+    log(Level.INFO, msgSupplier);
   }
 
   /**
    * Prints a stack trace message at info level.
-   * @param t throwable you want to log the stack trace
+   * @param message Message to log
+   * @param t Throwable you want to log the stack trace
    * @since 1.2
    */
-  public void info(Throwable t) {
-    if (isInfoEnabled()) {
-      StringWriter sw = new StringWriter();
-      PrintWriter pw = new PrintWriter(sw);
-      t.printStackTrace(pw);
-      info(sw.toString());
-    }
+  public void info(String message, Throwable t) {
+    log(Level.INFO, message, t);
   }
 
   /**
    * Prints a debug level message.
-   * @param message message to log
+   * @param message Message to log
    * @since 1.0
    */
   abstract public void debug(String message);
 
   /**
    * Prints a debug level message, computes it only if necessarry.
-   * @param msgSupplier supplier for computing message
+   * @param msgSupplier Supplier for computing message
    * @since 1.1
    */
   public void debug(Supplier<?> msgSupplier) {
-    if (isDebugEnabled()) {
-      debug(msgSupplier.get().toString());
-    }
+    log(Level.DEBUG, msgSupplier);
   }
 
   /**
    * Prints a stack trace message at debug level.
-   * @param t throwable you want to log the stack trace
+   * @param message Message to log
+   * @param t Throwable you want to log the stack trace
    * @since 1.2
    */
-  public void debug(Throwable t) {
-    if (isDebugEnabled()) {
-      StringWriter sw = new StringWriter();
-      PrintWriter pw = new PrintWriter(sw);
-      t.printStackTrace(pw);
-      debug(sw.toString());
-    }
+  public void debug(String message, Throwable t) {
+    log(Level.DEBUG, message, t);
   }
 
   /**
    * Prints a trace level message.
-   * @param message message to log
+   * @param message Message to log
    * @since 1.0
    */
   abstract public void trace(String message);
 
   /**
    * Prints a trace level message, computes it only if necessarry.
-   * @param msgSupplier supplier for computing message
+   * @param msgSupplier Supplier for computing message
    * @since 1.1
    */
   public void trace(Supplier<?> msgSupplier) {
-    if (isTraceEnabled()) {
-      trace(msgSupplier.get().toString());
-    }
+    log(Level.TRACE, msgSupplier);
   }
 
   /**
    * Prints a stack trace message at trace level.
-   * @param t throwable you want to log the stack trace
+   * @param message Message to log
+   * @param t Throwable you want to log the stack trace
    * @since 1.2
    */
-  public void trace(Throwable t) {
-    if (isTraceEnabled()) {
-      StringWriter sw = new StringWriter();
-      PrintWriter pw = new PrintWriter(sw);
-      t.printStackTrace(pw);
-      trace(sw.toString());
-    }
+  public void trace(String message, Throwable t) {
+    log(Level.TRACE, message, t);
   }
 
   /**
    * Retrieves the name of this logger.
-   * @return logger name
+   * @return Logger name
    * @since 1.1
    */
   abstract public String getName();
 
   /**
    * Retrieves the level of this logger.
-   * @return logger level
+   * @return Logger level
    * @since 1.1
    */
   abstract public Level getLevel();
 
   /**
    * Checks if logger level enables a message of given level.
-   * @param level message level
-   * @return true or false
+   * @param level Message level
+   * @return True if logger level enables a message of given level
    * @since 1.1
    */
   public boolean isEnabled(Level level) {
@@ -322,7 +288,7 @@ public abstract class Logger extends Object {
 
   /**
    * Checks if logger level enables a message of level fatal.
-   * @return true or false
+   * @return True if logger level enables a message of level fatal
    * @since 1.1
    */
   public boolean isFatalEnabled() {
@@ -331,7 +297,7 @@ public abstract class Logger extends Object {
 
   /**
    * Checks if logger level enables a message of level error.
-   * @return true or false
+   * @return True if logger level enables a message of level error
    * @since 1.1
    */
   public boolean isErrorEnabled() {
@@ -340,7 +306,7 @@ public abstract class Logger extends Object {
 
   /**
    * Checks if logger level enables a message of level warn.
-   * @return true or false
+   * @return True if logger level enables a message of level warn
    * @since 1.1
    */
   public boolean isWarnEnabled() {
@@ -349,7 +315,7 @@ public abstract class Logger extends Object {
 
   /**
    * Checks if logger level enables a message of level info.
-   * @return true or false
+   * @return True if logger level enables a message of level info
    * @since 1.1
    */
   public boolean isInfoEnabled() {
@@ -358,7 +324,7 @@ public abstract class Logger extends Object {
 
   /**
    * Checks if logger level enables a message of level debug.
-   * @return true or false
+   * @return True if logger level enables a message of level debug
    * @since 1.1
    */
   public boolean isDebugEnabled() {
@@ -367,7 +333,7 @@ public abstract class Logger extends Object {
 
   /**
    * Checks if logger level enables a message of level trace.
-   * @return true or false
+   * @return True if logger level enables a message of level trace
    * @since 1.1
    */
   public boolean isTraceEnabled() {

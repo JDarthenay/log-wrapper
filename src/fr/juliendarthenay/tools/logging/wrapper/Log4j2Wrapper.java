@@ -33,7 +33,7 @@ import java.util.Map;
 /**
  * Wrapper for Log4j 2.
  * @author Julien Darthenay
- * @version 1.2
+ * @version 1.3
  * @since 1.0
  */
 class Log4j2Wrapper extends Logger {
@@ -144,7 +144,7 @@ class Log4j2Wrapper extends Logger {
 
   /**
    * Constructor should only be used by LogManager.getLogger().
-   * @param tag logger name
+   * @param tag Logger name
    * @since 1.0
    */
   Log4j2Wrapper(String tag) {

@@ -27,7 +27,7 @@ package fr.juliendarthenay.tools.logging.wrapper;
 /**
  * Wrapper for console logging.
  * @author Julien Darthenay
- * @version 1.2
+ * @version 1.3
  * @since 1.0
  */
 class LogConsoleWrapper extends Logger {

@@ -27,7 +27,7 @@ package fr.juliendarthenay.tools.logging.wrapper;
 /**
  * Logging levels.
  * @author Julien Darthenay
- * @version 1.2
+ * @version 1.3
  * @since 1.1
  */
 public enum Level {
@@ -86,9 +86,9 @@ public enum Level {
 
   /**
    * Enum constructor.
-   * @param value value of level, the higher the more specific
-   * @param mayBeSent true if messages of this level can be sent
-   * @param log4j2Name name of the equivalent Log4j 2 level
+   * @param value Value of level, the higher the more specific
+   * @param mayBeSent True if messages of this level can be sent
+   * @param log4j2Name Name of the equivalent Log4j 2 level
    * @since 1.1
    */
   Level(int value, boolean mayBeSent, String log4j2Name) {
@@ -99,8 +99,8 @@ public enum Level {
 
   /**
    * Retrieves level with given value.
-   * @param value value of the researched level
-   * @return level or null
+   * @param value Value of the researched level
+   * @return Level or null
    * @since 1.1
    */
   public static Level fromValue(int value) {
@@ -115,8 +115,8 @@ public enum Level {
 
   /**
    * Retrieves level with given name.
-   * @param s name of the researched level
-   * @return level or null
+   * @param s Name of the researched level
+   * @return Level or null
    * @since 1.1
    */
   public static Level fromString(String s) {
@@ -132,7 +132,7 @@ public enum Level {
   /**
    * Retrieves level with given Log4j 2 name.
    * @param s Log4j 2 name of the researched level
-   * @return level or null
+   * @return Level or null
    * @since 1.1
    */
   public static Level fromLog4j2Name(String s) {
@@ -147,7 +147,7 @@ public enum Level {
 
   /**
    * Retrieves value of this level.
-   * @return level value
+   * @return Level value
    * @since 1.1
    */
   public int getValue() {
@@ -156,7 +156,7 @@ public enum Level {
 
   /**
    * Checks if given level can be used for logging a message.
-   * @return true or false
+   * @return True if given level can be used for logging a message
    * @since 1.1
    */
   public boolean isMayBeSent() {
@@ -165,7 +165,7 @@ public enum Level {
 
   /**
    * Retrieves name of this level.
-   * @return level name, lowercase
+   * @return Level name, lowercase
    * @since 1.1
    */
   public String toString() {
@@ -184,8 +184,8 @@ public enum Level {
   /**
    * Checks if this level as a logger level enables a message of given level.
    * @param level message level
-   * @return true or false
-   * @throws NullPointerException is given level is null
+   * @return True If this level enables a message of given level.
+   * @throws NullPointerException If given level is null
    * @since 1.1
    */
   public boolean isEnabling(Level level) {
