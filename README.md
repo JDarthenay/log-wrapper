@@ -1,7 +1,7 @@
 # LogWrapper
 
 This Java library is a lighter equivalent of
-[Apache Commonq Logging](http://commons.apache.org/proper/commons-logging/).
+[Apache Commons Logging](http://commons.apache.org/proper/commons-logging/).
 It supports very few features and only two logging systems:
 * console logger (with a single logging level for all loggers)
 * [Appache Log4j 2](http://logging.apache.org/log4j/2.x/)
