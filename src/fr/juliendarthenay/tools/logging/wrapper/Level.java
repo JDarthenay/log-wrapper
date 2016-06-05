@@ -6,20 +6,28 @@
  *****************************************************************************/
 
 /*****************************************************************************
- * This file is part of LogWrapper                                           *
+ * The MIT License (MIT)                                                     *
  *                                                                           *
- * LogWrapper is free software: you can redistribute it and/or modify it     *
- * under the terms of the GNU Lesser General Public License as published by  *
- * the Free Software Foundation, either version 3 of the License, or (at     *
- * your option) any later version.                                           *
+ * Copyright (c) 2016 Julien Darthenay <julien.darthenay@free.fr>            *
  *                                                                           *
- * LogWrapper is distributed in the hope that it will be useful, but WITHOUT *
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or     *
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public       *
- * License for more details.                                                 *
+ * Permission is hereby granted, free of charge, to any person obtaining a   *
+ * copy of this software and associated documentation files (the             *
+ * "Software"), to  deal in the Software without restriction, including      *
+ * without limitation the rights to use, copy, modify, merge, publish,       *
+ * distribute, sublicense, and/or sell copies of the Software, and to permit *
+ * persons to whom the Software is furnished to do                           *
+ * so, subject to the following conditions:                                  *
  *                                                                           *
- * You should have received a copy of the GNU Lesser General Public License  *
- * along with LogWrapper. If not, see <http://www.gnu.org/licenses/>.        *
+ * The above copyright notice and this permission notice shall be included   *
+ * in all copies or substantial portions of the Software.                    *
+ *                                                                           *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS   *
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF                *
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN *
+ * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,  *
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR     *
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE *
+ * USE OR OTHER DEALINGS IN THE SOFTWARE.                                    *
  *****************************************************************************/
 
 package fr.juliendarthenay.tools.logging.wrapper;
@@ -27,7 +35,7 @@ package fr.juliendarthenay.tools.logging.wrapper;
 /**
  * Logging levels.
  * @author Julien Darthenay
- * @version 1.3
+ * @version 1.4
  * @since 1.1
  */
 public enum Level {
@@ -132,7 +140,7 @@ public enum Level {
   /**
    * Retrieves level with given Log4j 2 name.
    * @param s Log4j 2 name of the researched level
-   * @return Level or null
+   * @return level or null
    * @since 1.1
    */
   public static Level fromLog4j2Name(String s) {
@@ -184,7 +192,7 @@ public enum Level {
   /**
    * Checks if this level as a logger level enables a message of given level.
    * @param level message level
-   * @return True If this level enables a message of given level.
+   * @return True If this level enables a message of given level
    * @throws NullPointerException If given level is null
    * @since 1.1
    */

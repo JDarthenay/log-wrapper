@@ -6,20 +6,28 @@
  *****************************************************************************/
 
 /*****************************************************************************
- * This file is part of LogWrapper                                           *
+ * The MIT License (MIT)                                                     *
  *                                                                           *
- * LogWrapper is free software: you can redistribute it and/or modify it     *
- * under the terms of the GNU Lesser General Public License as published by  *
- * the Free Software Foundation, either version 3 of the License, or (at     *
- * your option) any later version.                                           *
+ * Copyright (c) 2016 Julien Darthenay <julien.darthenay@free.fr>            *
  *                                                                           *
- * LogWrapper is distributed in the hope that it will be useful, but WITHOUT *
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or     *
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public       *
- * License for more details.                                                 *
+ * Permission is hereby granted, free of charge, to any person obtaining a   *
+ * copy of this software and associated documentation files (the             *
+ * "Software"), to  deal in the Software without restriction, including      *
+ * without limitation the rights to use, copy, modify, merge, publish,       *
+ * distribute, sublicense, and/or sell copies of the Software, and to permit *
+ * persons to whom the Software is furnished to do                           *
+ * so, subject to the following conditions:                                  *
  *                                                                           *
- * You should have received a copy of the GNU Lesser General Public License  *
- * along with LogWrapper. If not, see <http://www.gnu.org/licenses/>.        *
+ * The above copyright notice and this permission notice shall be included   *
+ * in all copies or substantial portions of the Software.                    *
+ *                                                                           *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS   *
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF                *
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN *
+ * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,  *
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR     *
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE *
+ * USE OR OTHER DEALINGS IN THE SOFTWARE.                                    *
  *****************************************************************************/
 
 package fr.juliendarthenay.tools.logging.wrapper;
@@ -34,7 +42,7 @@ import java.util.Map;
  * If Log4j2 is available, uses it.
  * If no other log tool is available, uses console logging.
  * @author Julien Darthenay
- * @version 1.3
+ * @version 1.4
  * @since 1.1
  */
 public abstract class LogManager extends Object {
@@ -45,7 +53,7 @@ public abstract class LogManager extends Object {
 
   private static final String LOG4J2_LOG_MANAGER_QUALIFIED_NAME
                                        = "org.apache.logging.log4j.LogManager";
-  private static final String LOG4J2_METHOD_GET_LOGGER = "getLogger";
+  private static final String LOG4J2_METHOD_GET_LOGGER_NAME = "getLogger";
 
   private static final boolean SILENTLY_SEARCH_LOGGING_TOOLS =
                     Boolean.getBoolean(PROPERTY_SILENTLY_SEARCH_LOGGING_TOOLS);
@@ -65,7 +73,7 @@ public abstract class LogManager extends Object {
    * Log4j 2 method to get loggers.
    * @since 1.0
    */
-  static final Method METHOD_GET_LOGGER;
+  static final Method LOG4J2_METHOD_GET_LOGGER;
 
   /**
    * Selects the log wrapper to use for logging.
@@ -75,15 +83,15 @@ public abstract class LogManager extends Object {
    */
   static {
     ClassLoader classLoader = LogManager.class.getClassLoader();
-    Method methodGetLogger = null;
+    Method log4j2MethodGetLogger = null;
     boolean log4j2Found = false;
 
     if (!IGNORE_LOG4J2) {
       try {
         Class<?> classLogManager =
                       classLoader.loadClass(LOG4J2_LOG_MANAGER_QUALIFIED_NAME);
-        methodGetLogger =
-             classLogManager.getMethod(LOG4J2_METHOD_GET_LOGGER, String.class);
+        log4j2MethodGetLogger =
+        classLogManager.getMethod(LOG4J2_METHOD_GET_LOGGER_NAME, String.class);
 
         log4j2Found = true;
       } catch (ClassNotFoundException e) {
@@ -95,7 +103,7 @@ public abstract class LogManager extends Object {
       }
     }
 
-    METHOD_GET_LOGGER = methodGetLogger;
+    LOG4J2_METHOD_GET_LOGGER = log4j2MethodGetLogger;
     LOG4J2_FOUND = log4j2Found;
   }
 
